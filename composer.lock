@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "458aaee8e3716a16a84a6d70f17188b9",
+    "content-hash": "910abb5e9279add1865572b67bd5e382",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -1743,6 +1743,69 @@
                 "type"
             ],
             "time": "2015-07-25T16:39:46+00:00"
+        },
+        {
+            "name": "pmatseykanets/artisan-io",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pmatseykanets/artisan-io.git",
+                "reference": "0ccca987b39653a2eeeba693414fe97154aa7169"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pmatseykanets/artisan-io/zipball/0ccca987b39653a2eeeba693414fe97154aa7169",
+                "reference": "0ccca987b39653a2eeeba693414fe97154aa7169",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "~5.1",
+                "illuminate/console": "~5.1",
+                "illuminate/container": "~5.1",
+                "illuminate/database": "~5.1",
+                "illuminate/support": "~5.1",
+                "illuminate/validation": "~5.1",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.5",
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ArtisanIo\\ArtisanIoServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ArtisanIo\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Matseykanets",
+                    "email": "pmatseykanets@gmail.com",
+                    "homepage": "https://github.com/pmatseykanets",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Artisan data import command for Laravel",
+            "keywords": [
+                "csv",
+                "data",
+                "delimited",
+                "import",
+                "laravel",
+                "tsv"
+            ],
+            "time": "2017-09-05T12:11:44+00:00"
         },
         {
             "name": "psr/container",

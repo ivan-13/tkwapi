@@ -16,25 +16,25 @@ class CreateRestaurantsTable extends Migration
         Schema::create('restaurants', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 100);
-            $table->string('branch', 100)->nullable();
+            $table->string('branch', 100)->nullable()->default(null);
             $table->string('phone', 20);
             $table->string('email', 100);
             $table->char('logo', 100);
             $table->char('address', 100);
-            $table->string('housenumber', 6);
+            $table->string('housenumber', 12);
             $table->string('postcode', 12);
-            $table->string('city', 12);
-            $table->float('latitude', 11, 7);
-            $table->float('longitude', 11, 7);
+            $table->string('city', 60);
+            $table->string('latitude', 12);
+            $table->string('longitude', 12);
             $table->string('url', 60);
             $table->integer('open');
-            $table->integer('bestMatch')->nullable();
-            $table->integer('newestScore')->nullable();
-            $table->integer('ratingAverage')->nullable();
-            $table->integer('popularity')->nullable();
-            $table->float('averageProductPrice', 6, 2)->nullable();
-            $table->float('deliveryCosts', 5, 2)->nullable();
-            $table->float('minimumOrderAmount', 5, 2)->nullable();
+            $table->integer('bestMatch')->nullable()->default(NULL);
+            $table->integer('newestScore')->nullable()->default(null);
+            $table->integer('ratingAverage')->nullable()->default(null);
+            $table->integer('popularity')->nullable()->default(null);
+            $table->string('averageProductPrice', 12)->nullable()->default(null);
+            $table->string('deliveryCosts', 12)->nullable()->default(null);
+            $table->string('minimumOrderAmount', 12)->nullable()->default(null);
         });
     }
 

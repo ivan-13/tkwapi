@@ -37,10 +37,14 @@ class RestaurantsController extends Controller
             if(!in_array('open', $columns)) $query->orderBy('open', 'desc');
             
             foreach($columns as $column) {
-                if(!Schema::hasColumn('restaurants', ltrim($column, '-'))) continue;
-                if('open' == ltrim($column)) $open = true;
                 $direction = $column[0] == '-' ? 'desc' : 'asc';
-                $query->orderBy(ltrim($column, '-'), $direction);
+                $column = ltrim($column, '-');
+                if(!Schema::hasColumn('restaurants', $column)) continue;
+                if(in_array($column, ['averageProductPrice', 'deliveryCosts', 'minimumOrderAmount'])) {
+                    // we need this to properly sort float values which had to be imported as string
+                    $column = $column . '+0.0';
+                }
+                $query->orderByRaw("$column $direction");
             }
         } else {
             $query = $query->orderByRaw("open desc, popularity desc, name");

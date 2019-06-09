@@ -27,6 +27,10 @@ class RestaurantsController extends Controller
             $query = $query->where('open', (int) $request->get('open'));
         }
 
+        if($request->has('s') && $request->filled('s')) {
+            $query = $query->where('name', 'like', '%' . $request->get('s') . '%');
+        }
+
         if($request->has('sort') && $request->filled('sort')) {
             $columns = explode(',', $request->get('sort'));
             

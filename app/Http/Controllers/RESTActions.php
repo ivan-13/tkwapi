@@ -3,9 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-trait RESTActions {
-
-
+trait RESTActions 
+{
     public function all()
     {
         $m = self::MODEL;

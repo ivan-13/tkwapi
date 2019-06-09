@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -25,8 +26,18 @@ class RestaurantsController extends Controller
         if($request->has('open') && $request->filled('open') && is_numeric($request->get('open'))) {
             $query = $query->where('open', (int) $request->get('open'));
         }
-        
-        $query = $query->orderByRaw("open desc, popularity desc, name");
+
+        if($request->has('sort') && $request->filled('sort')) {
+            $columns = explode(',', $request->get('sort'));
+            
+            foreach($columns as $column) {
+                if(!Schema::hasColumn('restaurants', ltrim($column, '-'))) continue;
+                $direction = $column[0] == '-' ? 'desc' : 'asc';
+                $query->orderBy(ltrim($column, '-'), $direction);
+            }
+        } else {
+            $query = $query->orderByRaw("open desc, popularity desc, name");
+        }
         
         $restaurants = $query->get();
 

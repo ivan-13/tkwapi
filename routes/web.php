@@ -7,5 +7,5 @@ $router->get('/', function () use ($router) {
 /**
  * Routes for resource restaurant
  */
-$router->get('v1/restaurant', 'RestaurantsController@all');
+$router->get('v1/restaurant', 'RestaurantsController@index');
 $router->get('v1/restaurant/{id}', 'RestaurantsController@get');

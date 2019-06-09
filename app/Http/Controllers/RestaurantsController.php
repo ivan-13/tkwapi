@@ -33,9 +33,12 @@ class RestaurantsController extends Controller
 
         if($request->has('sort') && $request->filled('sort')) {
             $columns = explode(',', $request->get('sort'));
+
+            if(!in_array('open', $columns)) $query->orderBy('open', 'desc');
             
             foreach($columns as $column) {
                 if(!Schema::hasColumn('restaurants', ltrim($column, '-'))) continue;
+                if('open' == ltrim($column)) $open = true;
                 $direction = $column[0] == '-' ? 'desc' : 'asc';
                 $query->orderBy(ltrim($column, '-'), $direction);
             }

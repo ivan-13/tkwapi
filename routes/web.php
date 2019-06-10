@@ -1,7 +1,7 @@
 <?php
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return view('home', ['lumen' => $router->app->version()]);
 });
 
 /**

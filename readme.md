@@ -28,6 +28,10 @@
     ```
     php artisan import:delimited -F storage/app/restaurant.fld  -i 1 storage/app/restaurants.csv restaurants
     ```
+    To verfiy that restaurants table was created and CSV imported to it, we can run the following test: 
+    ```
+    vendor/bin/phpunit --filter=CsvImportTest
+    ```
 
 ### Running the application locally 
 

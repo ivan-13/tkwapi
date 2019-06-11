@@ -52,6 +52,18 @@ class RestaurantsController extends Controller
         
         $restaurants = $query->get();
 
+        // this logic assumes Android app version is sent via request header so it can be used to change the 'name' tag in the response
+        if(false !== strpos($request->header('User-Agent'), 'Android') && false !== strpos($request->header('User-Agent'), '5.12.300')) {
+            $restaurants = $restaurants->toArray();
+            foreach($restaurants as &$restaurant) {
+                $keys = array_keys((array) $restaurant);
+                if(false != $nameTag = array_search('name', $keys)) {
+                    $keys[$nameTag] = 'restaurantName';
+                    $restaurant = array_combine($keys, (array) $restaurant);
+                }
+            }
+        }
+
         return $this->respond(Response::HTTP_OK, $restaurants);
     }
 }

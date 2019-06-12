@@ -32,7 +32,7 @@ class RestaurantsController extends Controller
         }
 
         if($request->has('sort') && $request->filled('sort')) {
-            $columns = explode(',', $request->get('sort'));
+            $columns = explode(',', trim($request->get('sort'), ','));
 
             if(!in_array('open', $columns)) $query->orderBy('open', 'desc');
             

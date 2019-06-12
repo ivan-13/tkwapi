@@ -83,13 +83,14 @@ Following are examples of requests with above mentioned sort and filter options:
     ```
     which returns restaurants sorted by ```bestMatch``` high to low, and ```averageProductPrice``` low to high(*)(**)
 
-    `*` Important notice: When using ```sort``` parameter, fetched restaurants would still be sorted by open state first (opened to closed), unless ```open``` attribute is explicitly sent as well 
+    **Important notices:**
+    
+    `*` When using ```sort``` parameter, fetched restaurants would still be sorted by open state first (opened to closed), unless ```open``` attribute is explicitly sent as well 
     
     `**` Order of ```sort``` parameters matter, following two requests would return differently sorted lists:
     ```
     GET /v1/restaurant?sort=-bestMatch,averageProductPrice
     GET /v1/restaurant?sort=averageProductPrice,-bestMatch
-
     ```
     First request would sort results by ```bestMatch``` first, and then by ```averageProductPrice```, whereas second request would return vice-versa sorting
 

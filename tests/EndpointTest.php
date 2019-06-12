@@ -10,16 +10,6 @@ class EndpointTest extends TestCase
         $this->assertEquals(200, $response->status());
     }
 
-    public function testRestaurantEndpointReturnsCorrectData()
-    {
-        $this->json('GET', '/v1/restaurant', ['id' => 98001237])
-             ->seeJson([
-                'name' => 'Classic Pizza',
-                'branch'     => 'Rotterdam',
-                'popularity' => 136
-             ]);
-    }
-
     public function testRestaurantEndpointReturnsAll()
     {
         $this->get('v1/restaurant', []);
@@ -49,5 +39,26 @@ class EndpointTest extends TestCase
                 'minimumOrderAmount'
             ]
         ]);
+    }
+
+    public function testRestaurantEndpointHasProperNameKey()
+    {
+        $this->json('GET', 'v1/restaurant', [], ['HTTP_USER_AGENT' => 'Android/5.12.300']);
+        $this->seeStatusCode(200);
+        $this->seeJsonStructure([
+            '*' => [
+                'restaurantName'
+            ]
+        ]);
+    }
+
+    public function testRestaurantEndpointReturnsCorrectData()
+    {
+        $this->json('GET', '/v1/restaurant', [])
+             ->seeJson([
+                'name' => 'Classic Pizza',
+                'branch'     => 'Rotterdam',
+                'popularity' => 136
+            ]);
     }
 }
